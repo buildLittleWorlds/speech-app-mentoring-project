@@ -4,6 +4,30 @@ This guide is for a student using a Windows computer. It walks through the basic
 
 Verified against official docs on March 19, 2026.
 
+## What are these tools?
+
+This project uses several tools that professional developers use every day. Here is a quick overview of each one before you start installing anything.
+
+### GitHub and Git
+
+[GitHub](https://github.com) is a website where developers store and share code. It keeps a complete history of every change ever made to a project, so you can always go back to an earlier version if something breaks. Git is the program that runs on your own computer and tracks those changes locally. When you run `git init`, you are telling Git to start watching a folder. Later, you can push your local history up to GitHub so other people (or your future self on a different computer) can see it.
+
+For this project, your mentor has a GitHub repository where the guides you are reading right now are hosted: [speech-app-mentoring-project](https://github.com/buildLittleWorlds/speech-app-mentoring-project).
+
+### uv
+
+[uv](https://docs.astral.sh/uv/) is a fast, modern tool for managing Python projects. It handles installing Python itself, creating isolated project environments, and adding packages (libraries of code that other people have written so you do not have to write everything from scratch). It replaces older tools like `pip` and `virtualenv` with a single command.
+
+You can find the official install page here: [Install uv](https://docs.astral.sh/uv/getting-started/installation/).
+
+### Google AI Studio, API keys, and why we need API access
+
+[Google AI Studio](https://ai.google.dev/aistudio) is a website where you can try out Google's Gemini AI models by typing prompts and uploading files directly in a browser. It is great for experimenting. But if you want to build an app that sends data to Gemini automatically from your own code — without a person manually typing into a website — you need **API access**.
+
+An API (Application Programming Interface) is a way for one program to talk to another program. When your Python backend sends a video to Gemini and gets evaluation feedback back, that conversation happens through the Gemini API. The API key is like a password that proves your app has permission to use Gemini. Google AI Studio is where you create that key.
+
+The short version: AI Studio is for humans experimenting in a browser. The API is for code talking to Gemini automatically. We need the API because our app's Python backend is the one sending the video and receiving the evaluation, not a person clicking buttons on a website.
+
 ## What you are setting up
 
 By the end of this guide, you will know how to:
@@ -106,7 +130,7 @@ Run:
 git init
 ```
 
-That turns the folder into a Git repository.
+That turns the folder into a **Git repository** (often shortened to "repo"). A repository is just a folder that Git is watching. From this point on, Git can track every change you make to the files inside it. Think of it like turning on "track changes" in a Word document, except it covers every file in the folder at once.
 
 Optional but helpful for the first time you use Git on a machine:
 
@@ -140,6 +164,8 @@ uv python pin 3.12
 
 ## Step 6: Add the packages you need
 
+**Packages** are libraries of code that other developers have written and shared publicly. Instead of writing a web server from scratch, for example, you install a package that already knows how to handle web requests. This is one of the most important ideas in modern software development: you build on top of other people's work.
+
 For a web app like this one, you can add packages with:
 
 ```powershell
@@ -149,6 +175,8 @@ uv add fastapi uvicorn python-multipart google-genai
 This updates `pyproject.toml`, creates a lockfile, and sets up the local environment.
 
 ## Step 7: Make a simple `.gitignore`
+
+A `.gitignore` file tells Git which files and folders to ignore — that is, which ones should never be tracked or uploaded to GitHub. This is important for two reasons: some files are private (like your API key), and some files are generated automatically and would just clutter up the history (like the `.venv/` folder that `uv` creates).
 
 Create a file named `.gitignore` in the project folder and paste this:
 
@@ -161,6 +189,8 @@ __pycache__/
 This keeps local environment files and cache folders out of Git.
 
 ## Step 8: Create a Google AI Studio API key
+
+An **API key** is a long string of characters that acts like a password between your app and Google's servers. Every time your Python code sends a video to Gemini, it includes this key so Google knows the request is authorized. Without it, Google would reject the request.
 
 Go to:
 

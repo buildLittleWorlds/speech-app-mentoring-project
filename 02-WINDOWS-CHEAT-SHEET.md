@@ -64,7 +64,7 @@ __pycache__/
 
 Copy the code from these walkthrough files:
 
-- [01-BUILD-SPEECH-EVALUATOR-PROTOTYPE.md](/Users/familyplate/work/side-gigs/youth-horizons/cui-shawn/speech-eval-prototype/01-BUILD-SPEECH-EVALUATOR-PROTOTYPE.md)
+- [01-BUILD-SPEECH-EVALUATOR-PROTOTYPE.md](./01-BUILD-SPEECH-EVALUATOR-PROTOTYPE.md)
 
 Paste the big Python block into `app.py`.
 
@@ -130,5 +130,5 @@ If the page looks broken:
 
 ## Full guides
 
-- [00-WINDOWS-PROJECT-SETUP.md](/Users/familyplate/work/side-gigs/youth-horizons/cui-shawn/speech-eval-prototype/00-WINDOWS-PROJECT-SETUP.md)
-- [01-BUILD-SPEECH-EVALUATOR-PROTOTYPE.md](/Users/familyplate/work/side-gigs/youth-horizons/cui-shawn/speech-eval-prototype/01-BUILD-SPEECH-EVALUATOR-PROTOTYPE.md)
+- [00-WINDOWS-PROJECT-SETUP.md](./00-WINDOWS-PROJECT-SETUP.md)
+- [01-BUILD-SPEECH-EVALUATOR-PROTOTYPE.md](./01-BUILD-SPEECH-EVALUATOR-PROTOTYPE.md)

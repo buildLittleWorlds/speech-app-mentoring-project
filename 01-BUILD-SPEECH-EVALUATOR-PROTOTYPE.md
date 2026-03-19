@@ -54,11 +54,20 @@ uv python pin 3.12
 
 ## Step 4: Add the dependencies
 
+**Dependencies** are packages (other people's code) that your project needs in order to work. Here is what each one does:
+
+- **fastapi** — a Python framework for building web APIs. It handles incoming web requests (like when the browser sends a video to be evaluated) and sends back responses.
+- **uvicorn** — a lightweight web server that actually runs your FastAPI app and listens for requests on your computer.
+- **python-multipart** — lets FastAPI accept file uploads (like video files) from a web browser.
+- **google-genai** — Google's official Python library for talking to the Gemini API. This is how your backend sends the video to Gemini and gets evaluation feedback back.
+
 ```powershell
 uv add fastapi uvicorn python-multipart google-genai
 ```
 
 ## Step 5: Create the folder structure
+
+This app has two main parts. The **backend** (`app.py`) is the Python code that runs on your computer and does the real work: receiving the video, sending it to Gemini, and returning the results. The **frontend** (`static/index.html`) is the web page that runs in the browser and gives the user something to look at and click on. The frontend talks to the backend behind the scenes. This frontend/backend split is how most modern web apps work.
 
 Create a `static` folder:
 
@@ -87,6 +96,8 @@ __pycache__/
 ```
 
 ## Step 7: Create `app.py`
+
+This is the backend — the Python code that does all the heavy lifting. You do not need to understand every line right now. The important thing to know is that this file receives a video upload from the browser, sends it to Gemini through the API, and returns structured feedback as JSON (a standard format for passing data between programs).
 
 Create a file named `app.py` in the project root and paste this:
 
@@ -377,6 +388,8 @@ if __name__ == "__main__":
 ```
 
 ## Step 8: Create `static\index.html`
+
+This is the frontend — the web page that users actually see and interact with. It includes HTML (the structure of the page), CSS (the visual styling), and JavaScript (the code that handles user interactions like uploading a file and displaying results). Everything is in a single file for simplicity.
 
 Create a file named `index.html` inside the `static` folder and paste this:
 
@@ -1119,6 +1132,8 @@ Start the local server with:
 uv run uvicorn app:app --reload
 ```
 
+Breaking this command down: `uv run` means "run this command using the project's Python environment." `uvicorn` is the web server. `app:app` tells uvicorn to look in the file `app.py` for the FastAPI application object named `app`. `--reload` tells uvicorn to automatically restart whenever you save a change to your code, which is useful during development.
+
 You should see output that includes a local address, usually:
 
 ```text
@@ -1137,10 +1152,10 @@ Open that address in a browser.
 
 ## What each piece does
 
-- `app.py` is the backend.
-- `static/index.html` is the frontend page.
-- `GEMINI_API_KEY` lets the backend talk to Gemini.
-- `/evaluate` is the route that uploads the video and asks Gemini for judging-style feedback.
+- **`app.py`** is the backend. It is a Python program that runs a web server on your computer. When the browser sends a video, this is the code that receives it.
+- **`static/index.html`** is the frontend. It is the web page you see in the browser. It handles the upload button, the loading spinner, and displaying the evaluation results.
+- **`GEMINI_API_KEY`** is the environment variable that stores your API key. The backend reads it when it needs to authenticate with Google's servers. It is never sent to the browser or stored in your code files.
+- **`/evaluate`** is the API route (the specific URL path) that the frontend calls when you click "Evaluate Speech." The backend receives the video at this route, sends it to Gemini, and returns the structured feedback.
 
 ## If something goes wrong
 
