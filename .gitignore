@@ -1,0 +1,8 @@
+# Ignore everything by default
+*
+
+# Allow these files through
+!.gitignore
+!00-WINDOWS-PROJECT-SETUP.md
+!01-BUILD-SPEECH-EVALUATOR-PROTOTYPE.md
+!02-WINDOWS-CHEAT-SHEET.md
